@@ -10,22 +10,19 @@ import About from "./pages/About";
 const App = () => {
   return (
     <Router>
-      <div className="flex">
-        <Sidebar />
+      {/* Sidebar is fixed, so layout must start after it */}
+      <Sidebar />
 
-        <div className="flex-1 min-h-screen bg-white dark:bg-gray-900">
-          <Navbar />
-          
+<div className="ml-60 flex-1 min-h-screen bg-gray-100 dark:bg-gray-800">
+        <Navbar />
 
-
-          <div className="p-6">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/transactions" element={<Transactions />} />
-              <Route path="/insights" element={<Insights />} />
-              <Route path="/about" element={<About />} />
-            </Routes>
-          </div>
+        <div className="p-6">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/transactions" element={<Transactions />} />
+            <Route path="/insights" element={<Insights />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
         </div>
       </div>
     </Router>
