@@ -1,5 +1,5 @@
-const About = () => {
+const Insights = () => {
   return <h1 className="text-2xl font-semibold text-black dark:text-white"
->About Page</h1>;
+>Insights</h1>;
 };
-export default About;
+export default Insights;
