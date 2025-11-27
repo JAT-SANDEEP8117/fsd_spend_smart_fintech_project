@@ -1,14 +1,18 @@
-import { PieChart, Pie, Tooltip, Cell, Legend } from "recharts";
+import { PieChart, Pie, Tooltip, Cell, Legend, ResponsiveContainer } from "recharts";
 
 const COLORS = {
-  income: "#0088FE",     // blue
-  expense: "#FF4B55",    // red
-  savings: "#00C49F",    // green
+  income: "#3b82f6",     // blue
+  expense: "#ef4444",    // red
+  savings: "#10b981",    // green
 };
 
 const IncomeExpenseSavingsChart = ({ data }) => {
   if (!data || data.length === 0) {
-    return <p className="text-gray-400">No data available.</p>;
+    return (
+      <div className="text-center text-gray-500 dark:text-gray-400 py-8">
+        No data available
+      </div>
+    );
   }
 
   // Calculate totals
@@ -30,23 +34,32 @@ const IncomeExpenseSavingsChart = ({ data }) => {
   ];
 
   return (
-    <PieChart width={350} height={350}>
-      <Pie
-        data={chartData}
-        dataKey="value"
-        cx="50%"
-        cy="50%"
-        outerRadius={120}
-        label={({ percent }) => `${(percent * 100).toFixed(1)}%`}
-      >
-        {chartData.map((entry, index) => (
-          <Cell key={index} fill={entry.color} />
-        ))}
-      </Pie>
+    <ResponsiveContainer width="100%" height={350}>
+      <PieChart>
+        <Pie
+          data={chartData}
+          dataKey="value"
+          cx="50%"
+          cy="50%"
+          outerRadius={120}
+          label={({ percent }) => `${(percent * 100).toFixed(1)}%`}
+        >
+          {chartData.map((entry, index) => (
+            <Cell key={index} fill={entry.color} />
+          ))}
+        </Pie>
 
-      <Tooltip />
-      <Legend />
-    </PieChart>
+        <Tooltip 
+          contentStyle={{
+            backgroundColor: 'white',
+            border: '1px solid #e5e7eb',
+            borderRadius: '8px'
+          }}
+          className="dark:bg-gray-800 dark:border-gray-700"
+        />
+        <Legend />
+      </PieChart>
+    </ResponsiveContainer>
   );
 };
 

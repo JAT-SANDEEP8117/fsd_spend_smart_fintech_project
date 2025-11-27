@@ -1,6 +1,6 @@
 // src/features/transactions/EditTransaction.jsx
-import { useState } from "react";
-import { FaTimes } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const incomeCategories = [
   "Salary",
@@ -23,49 +23,60 @@ const expenseCategories = [
 ];
 
 const EditTransaction = ({ open, setOpen, transaction, saveEdit }) => {
-  if (!open || !transaction) return null;
+  const [type, setType] = useState("income");
+  const [amount, setAmount] = useState("");
+  const [category, setCategory] = useState("");
+  const [date, setDate] = useState("");
+  const [description, setDescription] = useState("");
 
-  const [type, setType] = useState(transaction.type);
-  const [amount, setAmount] = useState(transaction.amount);
-  const [category, setCategory] = useState(transaction.category);
-  const [date, setDate] = useState(transaction.date);
-  const [description, setDescription] = useState(transaction.description);
+  // Load existing data when modal opens
+  useEffect(() => {
+    if (transaction) {
+      setType(transaction.type);
+      setAmount(transaction.amount);
+      setCategory(transaction.category);
+      setDate(transaction.date);
+      setDescription(transaction.description || "");
+    }
+  }, [transaction, open]);
+
+  if (!open || !transaction) return null;
 
   const categories = type === "income" ? incomeCategories : expenseCategories;
 
   const handleUpdate = () => {
-    saveEdit({
+    if (!amount || !date) {
+      toast.error("Amount and Date are required!");
+      return;
+    }
+
+    const updatedTx = {
       ...transaction,
       type,
       amount: Number(amount),
       category,
       date,
-      description: description || "No description",
-    });
+      description,
+    };
 
-    setOpen(false);
+    saveEdit(updatedTx); // This will call updateTransaction from context
   };
 
   return (
-    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-      <div className="bg-gray-100 dark:bg-gray-800 p-6 rounded-xl shadow-xl w-[420px] animate-scaleIn">
+    <div className="fixed inset-0 bg-black/50 dark:bg-black/70 flex items-center justify-center z-50" onClick={() => setOpen(false)}>
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-2xl w-[420px] max-w-[90vw] border border-gray-200 dark:border-gray-700" onClick={(e) => e.stopPropagation()}>
 
-        {/* HEADER */}
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-semibold dark:text-white">Edit Transaction</h2>
-          <FaTimes
-            onClick={() => setOpen(false)}
-            className="cursor-pointer text-gray-700 dark:text-gray-300"
-          />
-        </div>
+        <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+          Edit Transaction
+        </h2>
 
-        {/* TYPE SWITCH */}
-        <div className="flex mb-4">
+        {/* Type Switch */}
+        <div className="flex mb-4 rounded-lg overflow-hidden border border-gray-300 dark:border-gray-600">
           <button
-            className={`flex-1 py-2 rounded-l-lg ${
+            className={`flex-1 py-2.5 transition-colors ${
               type === "income"
                 ? "bg-green-600 text-white"
-                : "bg-gray-300 dark:bg-gray-700 dark:text-gray-300"
+                : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
             }`}
             onClick={() => {
               setType("income");
@@ -76,10 +87,10 @@ const EditTransaction = ({ open, setOpen, transaction, saveEdit }) => {
           </button>
 
           <button
-            className={`flex-1 py-2 rounded-r-lg ${
+            className={`flex-1 py-2.5 transition-colors ${
               type === "expense"
                 ? "bg-red-600 text-white"
-                : "bg-gray-300 dark:bg-gray-700 dark:text-gray-300"
+                : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"
             }`}
             onClick={() => {
               setType("expense");
@@ -90,58 +101,62 @@ const EditTransaction = ({ open, setOpen, transaction, saveEdit }) => {
           </button>
         </div>
 
-        {/* AMOUNT */}
-        <label className="text-sm dark:text-gray-300">Amount</label>
+        {/* Amount */}
+        <label className="text-sm font-medium text-gray-700 dark:text-gray-300 block mb-1">Amount</label>
         <input
+          className="w-full mt-1 mb-4 p-2.5 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           type="number"
-          className="w-full mt-1 p-2 rounded bg-white dark:bg-gray-900 border dark:border-gray-700"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
+          placeholder="Enter amount"
         />
 
-        {/* CATEGORY */}
-        <label className="text-sm mt-4 block dark:text-gray-300">Category</label>
+        {/* Category */}
+        <label className="text-sm font-medium text-gray-700 dark:text-gray-300 block mb-1">
+          Category
+        </label>
         <select
-          className="w-full mt-1 p-2 rounded bg-white dark:bg-gray-900 border dark:border-gray-700"
+          className="w-full mt-1 mb-4 p-2.5 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         >
           {categories.map((c) => (
-            <option key={c}>{c}</option>
+            <option key={c} value={c}>{c}</option>
           ))}
         </select>
 
-        {/* DATE */}
-        <label className="text-sm mt-4 block dark:text-gray-300">Date</label>
+        {/* Date */}
+        <label className="text-sm font-medium text-gray-700 dark:text-gray-300 block mb-1">Date</label>
         <input
+          className="w-full mt-1 mb-4 p-2.5 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           type="date"
-          className="w-full mt-1 p-2 rounded bg-white dark:bg-gray-900 border dark:border-gray-700"
           value={date}
           onChange={(e) => setDate(e.target.value)}
         />
 
-        {/* DESCRIPTION */}
-        <label className="text-sm mt-4 block dark:text-gray-300">
-          Description
+        {/* Description */}
+        <label className="text-sm font-medium text-gray-700 dark:text-gray-300 block mb-1">
+          Description (optional)
         </label>
         <input
-          className="w-full mt-1 p-2 rounded bg-white dark:bg-gray-900 border dark:border-gray-700"
+          className="w-full mt-1 mb-4 p-2.5 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
+          placeholder="Add a description"
         />
 
-        {/* BUTTONS */}
-        <div className="flex justify-end gap-3 mt-6">
+        {/* Buttons */}
+        <div className="flex justify-end mt-6 gap-3">
           <button
             onClick={() => setOpen(false)}
-            className="px-4 py-2 rounded bg-gray-300 dark:bg-gray-700 dark:text-white"
+            className="px-5 py-2.5 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600 transition-all transform hover:scale-105 active:scale-95 font-medium"
           >
             Cancel
           </button>
 
           <button
             onClick={handleUpdate}
-            className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700"
+            className="px-5 py-2.5 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-all transform hover:scale-105 active:scale-95 font-medium"
           >
             Update
           </button>

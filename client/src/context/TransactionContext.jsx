@@ -1,75 +1,111 @@
 // src/context/TransactionContext.jsx
-import { createContext, useReducer, useEffect } from "react";
 
-// 🌟 Initial State
-const initialState = {
-  transactions: JSON.parse(localStorage.getItem("transactions")) || []
-};
+import { createContext, useEffect, useState } from "react";
+import api from "../utils/api";
+import { toast } from "react-toastify";
 
-// 🌟 Helper: Sort by DATE + TIME (newest first)
-const sortByDateTime = (list) => {
-  return list.sort((a, b) => {
-    const dateA = new Date(a.date + "T" + (a.time || "23:59"));
-    const dateB = new Date(b.date + "T" + (b.time || "23:59"));
-    return dateB - dateA;
-  });
-};
-
-// 🌟 Reducer
-const TransactionReducer = (state, action) => {
-  switch (action.type) {
-    case "ADD_TRANSACTION": {
-      const updated = [action.payload, ...state.transactions]; // add at top
-      return { ...state, transactions: sortByDateTime(updated) };
-    }
-
-    case "EDIT_TRANSACTION": {
-      const updated = state.transactions.map((t) =>
-        t.id === action.payload.id ? action.payload : t
-      );
-      return { ...state, transactions: sortByDateTime(updated) };
-    }
-
-    case "DELETE_TRANSACTION": {
-      const updated = state.transactions.filter(
-        (t) => t.id !== action.payload
-      );
-      return { ...state, transactions: sortByDateTime(updated) };
-    }
-
-    default:
-      return state;
-  }
-};
-
-// 🌟 Context
 export const TransactionContext = createContext();
 
-// 🌟 Provider
 export const TransactionProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(TransactionReducer, initialState);
+  const [transactions, setTransactions] = useState([]);
 
-  // Save to localStorage
+  // 🔥 SORT: Latest FIRST (by date, then by id)
+  const sortByLatest = (data) => {
+    return [...data].sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      const dateDiff = dateB - dateA;
+      if (dateDiff !== 0) return dateDiff;
+
+      // fallback when same date → compare IDs (handle both string and numeric)
+      const idA = typeof a.id === 'string' ? a.id : String(a.id);
+      const idB = typeof b.id === 'string' ? b.id : String(b.id);
+      return idB.localeCompare(idA);
+    });
+  };
+
+  // 📌 Fetch all transactions from JSON server
+  const fetchTransactions = async () => {
+    try {
+      const res = await api.get("/transactions");
+      setTransactions(sortByLatest(res.data));
+    } catch (err) {
+      console.error("Error fetching transactions:", err);
+      toast.error("Failed to load transactions.");
+    }
+  };
+
   useEffect(() => {
-    localStorage.setItem("transactions", JSON.stringify(state.transactions));
-  }, [state.transactions]);
+    fetchTransactions();
+  }, []);
 
-  const addTransaction = (tx) =>
-    dispatch({ type: "ADD_TRANSACTION", payload: tx });
+  // ➕ ADD Transaction
+  const addTransaction = async (tx) => {
+    try {
+      const res = await api.post("/transactions", tx);
 
-  const updateTransaction = (tx) =>
-    dispatch({ type: "EDIT_TRANSACTION", payload: tx });
+      setTransactions((prev) => sortByLatest([...prev, res.data]));
+      toast.success("Transaction added!");
+    } catch (err) {
+      console.error("Error adding transaction:", err);
+      toast.error("Failed to add transaction.");
+    }
+  };
 
-  const deleteTransaction = (id) =>
-    dispatch({ type: "DELETE_TRANSACTION", payload: id });
+  // 🗑 DELETE Transaction
+  const deleteTransaction = async (id) => {
+    try {
+      await api.delete(`/transactions/${id}`);
+
+      setTransactions((prev) =>
+        sortByLatest(prev.filter((t) => t.id !== id))
+      );
+      toast.info("Transaction deleted!");
+    } catch (err) {
+      console.error("Error deleting transaction:", err);
+      toast.error("Failed to delete transaction.");
+    }
+  };
+
+  // ✏️ UPDATE Transaction
+  const updateTransaction = async (updatedTx) => {
+    try {
+      const res = await api.put(`/transactions/${updatedTx.id}`, updatedTx);
+
+      setTransactions((prev) =>
+        sortByLatest(prev.map((t) => (t.id === updatedTx.id ? res.data : t)))
+      );
+
+      toast.success("Transaction updated!");
+    } catch (err) {
+      console.error("Error updating transaction:", err);
+      toast.error("Failed to update transaction.");
+    }
+  };
+
+  // 🔄 RESET All Transactions
+  const resetAllTransactions = async () => {
+    try {
+      // Delete all transactions one by one
+      const deletePromises = transactions.map((t) => api.delete(`/transactions/${t.id}`));
+      await Promise.all(deletePromises);
+      
+      setTransactions([]);
+      toast.success("All transactions have been reset!");
+    } catch (err) {
+      console.error("Error resetting transactions:", err);
+      toast.error("Failed to reset transactions.");
+    }
+  };
 
   return (
     <TransactionContext.Provider
       value={{
-        transactions: state.transactions,
+        transactions,
         addTransaction,
-        updateTransaction,
         deleteTransaction,
+        updateTransaction,
+        resetAllTransactions,
       }}
     >
       {children}

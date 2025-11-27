@@ -1,0 +1,52 @@
+{
+  "transactions": [
+    {
+      "id": "14d3",
+      "type": "income",
+      "amount": 5656500000,
+      "category": "Business Income",
+      "date": "2025-11-27",
+      "description": "today"
+    },
+    {
+      "id": "49a3",
+      "type": "income",
+      "amount": 122300,
+      "category": "Interest Income",
+      "date": "2025-11-27",
+      "description": "vcbvbnnm"
+    },
+    {
+      "id": "d5e8",
+      "type": "income",
+      "amount": 1510,
+      "category": "Business Income",
+      "date": "2025-11-27",
+      "description": ""
+    },
+    {
+      "id": "c249",
+      "type": "expense",
+      "amount": 8200,
+      "category": "Rent",
+      "date": "2025-11-27",
+      "description": ""
+    },
+    {
+      "id": "36a4",
+      "type": "expense",
+      "amount": 100000,
+      "category": "Entertainment",
+      "date": "2025-11-27",
+      "description": ""
+    },
+    {
+      "id": "5fd2",
+      "type": "expense",
+      "amount": 50,
+      "category": "Food",
+      "date": "2025-11-27",
+      "description": ""
+    }
+  ]
+}
