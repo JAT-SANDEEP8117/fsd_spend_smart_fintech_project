@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
             <FaCode className="text-blue-600 dark:text-blue-400" />
             <span className="text-sm">
-              Built with <FaHeart className="inline text-red-500 mx-1" /> by JAT SANDEEP
+              Built with <FaHeart className="inline text-red-500 mx-1" /> 
             </span>
           </div>
           

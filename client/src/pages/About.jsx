@@ -123,7 +123,7 @@ const About = () => {
         {/* Footer Note */}
         <div className="text-center mt-8 text-gray-500 dark:text-gray-400">
           <p>Built with ❤️ using React and modern web technologies</p>
-          <p className="text-sm mt-2">© 2024 Spend Smart - All rights reserved</p>
+          <p className="text-sm mt-2">© 2025 Spend Smart - All rights reserved</p>
         </div>
       </div>
     </div>
