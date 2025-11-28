@@ -47,6 +47,14 @@
       "category": "Food",
       "date": "2025-11-27",
       "description": ""
+    },
+    {
+      "id": "b8eb",
+      "type": "income",
+      "amount": 500,
+      "category": "Interest Income",
+      "date": "2025-11-28",
+      "description": ""
     }
   ]
 }
