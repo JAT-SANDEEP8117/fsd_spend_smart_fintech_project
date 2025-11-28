@@ -7,7 +7,7 @@ const About = () => {
     { icon: FaChartPie, title: "Analytics Dashboard", desc: "Interactive charts and visual insights" },
     { icon: FaFilePdf, title: "PDF Export", desc: "Export transactions with filters and charts" },
     { icon: FaBrain, title: "AI Insights", desc: "Smart financial recommendations" },
-    { icon: FaMoon, title: "Dark Mode", desc: "Beautiful dark and light themes" },
+    { icon: FaMoon, title: "Dark Mode", desc: "Beautiful dark and light themes coming soon" },
     { icon: FaServer, title: "JSON Server", desc: "Persistent data storage" }
   ];
 
@@ -25,10 +25,10 @@ const About = () => {
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mb-6 animate-float">
+          <div className="inline-flex items-center justify-center w-24 h-24 bg-linear-to-br from-blue-500 to-purple-600 rounded-full mb-6 animate-float">
             <FaUser className="text-white text-5xl" />
           </div>
-          <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
+          <h1 className="text-5xl font-bold mb-4 bg-linear-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
             About Spend Smart
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
@@ -39,7 +39,7 @@ const About = () => {
         {/* Developer Card */}
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 mb-8 border border-gray-200 dark:border-gray-700 animate-slideIn">
           <div className="flex flex-col md:flex-row items-center gap-6 mb-6">
-            <div className="p-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl shadow-lg">
+            <div className="p-4 bg-linear-to-br from-blue-500 to-purple-600 rounded-2xl shadow-lg">
               <FaUser className="text-white text-6xl" />
             </div>
             <div className="text-center md:text-left">
@@ -67,7 +67,7 @@ const About = () => {
         </div>
 
         {/* Project Description */}
-        <div className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-8 mb-8 border border-blue-200 dark:border-blue-800">
+        <div className="bg-linear-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-8 mb-8 border border-blue-200 dark:border-blue-800">
           <h3 className="text-2xl font-bold mb-4 flex items-center gap-3">
             <FaPalette className="text-blue-600 dark:text-blue-400" />
             Project Overview
