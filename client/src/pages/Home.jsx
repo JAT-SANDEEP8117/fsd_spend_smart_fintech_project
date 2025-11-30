@@ -17,7 +17,7 @@ const Home = () => {
       const idB = typeof b.id === 'string' ? b.id : String(b.id);
       return idB.localeCompare(idA);
     })
-    .slice(0, 5);
+    .slice(0, 6);
 
   return (
     <div className="text-gray-900 dark:text-white animate-fadeIn">

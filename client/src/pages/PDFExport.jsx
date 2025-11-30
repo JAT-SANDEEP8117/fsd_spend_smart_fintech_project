@@ -1,15 +1,17 @@
 // src/pages/PDFExport.jsx
 import { useContext, useState, useMemo } from "react";
 import { TransactionContext } from "../context/TransactionContext";
+import { AuthContext } from "../context/AuthContext";
 import { FaDownload, FaFilePdf, FaFilter } from "react-icons/fa";
 import { toast } from "react-toastify";
 import PDFGenerator from "../features/pdf/PDFGenerator";
 
 const PDFExport = () => {
   const { transactions } = useContext(TransactionContext);
+  const { user } = useContext(AuthContext);
   const [filterType, setFilterType] = useState("all");
   const [filterCategory, setFilterCategory] = useState("all");
-  const [reportType, setReportType] = useState("all"); // all, monthly
+  const [reportType, setReportType] = useState("all");
   const [selectedMonth, setSelectedMonth] = useState("");
 
   // Get unique categories
@@ -82,6 +84,7 @@ const PDFExport = () => {
         reportType,
         selectedMonth,
         totals,
+        username: user?.username || "User",
       });
       toast.success("PDF downloaded successfully! 🎉");
     } catch (error) {

@@ -45,10 +45,10 @@ const About = () => {
             <div className="text-center md:text-left">
               <h2 className="text-3xl font-bold mb-2">GenX</h2>
               <p className="text-lg text-gray-600 dark:text-gray-400 mb-2">
-                B.Tech Computer Science & Engineering
+                Full Stack Developers
               </p>
               <p className="text-gray-500 dark:text-gray-500">
-                Full Stack Developer | SRM University
+                B.Tech Computer Science & Engineering | SRM University
               </p>
             </div>
           </div>
@@ -73,7 +73,7 @@ const About = () => {
             Project Overview
           </h3>
           <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-            <strong className="text-blue-600 dark:text-blue-400">Spend Smart</strong> is a comprehensive personal finance management application designed to help users track their income, expenses, and financial health. Built with modern React technologies, it offers an intuitive interface with powerful analytics, PDF export capabilities, and AI-powered insights.
+            <strong className="text-blue-600 dark:text-blue-400">Spend Smart</strong> is a comprehensive personal finance management application designed to help users track their income, expenses, and financial health. This is a group project developed by <strong className="text-blue-600 dark:text-blue-400">GenX</strong>, a team of full stack developers. Built with modern React technologies, it offers an intuitive interface with powerful analytics, PDF export capabilities, and AI-powered insights.
           </p>
         </div>
 

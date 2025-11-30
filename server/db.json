@@ -1,7 +1,46 @@
 {
+  "users": [
+    {
+      "id": "1",
+      "username": "sandeep_8117",
+      "email": "jatsandeep275@gmail.com",
+      "password": "JatS8117"
+    },
+    {
+      "id": "2",
+      "username": "user2",
+      "email": "user2@example.com",
+      "password": "Password123!"
+    },
+    {
+      "id": "3",
+      "username": "user3",
+      "email": "user3@example.com",
+      "password": "StrongPass!23"
+    },
+    {
+      "id": "4",
+      "username": "dummy1",
+      "email": "dummy1@example.com",
+      "password": "Dummy123!@#"
+    },
+    {
+      "id": "d238",
+      "username": "sidhu_8117",
+      "email": "sidhubachina11t@gmail.com",
+      "password": "Sidhu@123"
+    },
+    {
+      "id": "7e4d",
+      "username": "likith_1234",
+      "email": "likith221@gmail.com",
+      "password": "Likith@123"
+    }
+  ],
   "transactions": [
     {
       "id": "14d3",
+      "userId": "1",
       "type": "income",
       "amount": 550000,
       "category": "Business Income",
@@ -10,6 +49,7 @@
     },
     {
       "id": "49a3",
+      "userId": "1",
       "type": "income",
       "amount": 1223000,
       "category": "Interest Income",
@@ -18,6 +58,7 @@
     },
     {
       "id": "d5e8",
+      "userId": "1",
       "type": "income",
       "amount": 15100,
       "category": "Business Income",
@@ -26,6 +67,7 @@
     },
     {
       "id": "c249",
+      "userId": "1",
       "type": "expense",
       "amount": 8200,
       "category": "Rent",
@@ -34,6 +76,7 @@
     },
     {
       "id": "36a4",
+      "userId": "1",
       "type": "expense",
       "amount": 10000,
       "category": "Entertainment",
@@ -42,6 +85,7 @@
     },
     {
       "id": "5fd2",
+      "userId": "1",
       "type": "expense",
       "amount": 5000,
       "category": "Food",
@@ -50,6 +94,7 @@
     },
     {
       "id": "b8eb",
+      "userId": "1",
       "type": "income",
       "amount": 5000,
       "category": "Freelancing",
@@ -58,6 +103,7 @@
     },
     {
       "id": "e20d",
+      "userId": "1",
       "type": "expense",
       "amount": 10000,
       "category": "Food",
@@ -66,6 +112,7 @@
     },
     {
       "id": "3aae",
+      "userId": "1",
       "type": "expense",
       "amount": 50000,
       "category": "Shopping",
@@ -74,6 +121,7 @@
     },
     {
       "id": "03dd",
+      "userId": "1",
       "type": "expense",
       "amount": 15500,
       "category": "Transport",
@@ -82,6 +130,7 @@
     },
     {
       "id": "80fb",
+      "userId": "1",
       "type": "expense",
       "amount": 100008,
       "category": "Bills",
@@ -90,6 +139,7 @@
     },
     {
       "id": "4593",
+      "userId": "1",
       "type": "expense",
       "amount": 2000,
       "category": "Others",
@@ -98,6 +148,7 @@
     },
     {
       "id": "7a10",
+      "userId": "1",
       "type": "expense",
       "amount": 560500,
       "category": "Groceries",
@@ -106,6 +157,7 @@
     },
     {
       "id": "a357",
+      "userId": "1",
       "type": "income",
       "amount": 50000,
       "category": "Interest Income",
@@ -114,6 +166,7 @@
     },
     {
       "id": "20bd",
+      "userId": "1",
       "type": "income",
       "amount": 1800000,
       "category": "Salary",
@@ -122,11 +175,21 @@
     },
     {
       "id": "bf5c",
+      "userId": "1",
       "type": "expense",
       "amount": 30000,
       "category": "Others",
       "date": "2025-10-22",
       "description": ""
+    },
+    {
+      "id": "fa39",
+      "type": "income",
+      "amount": 1000000,
+      "category": "Business Income",
+      "date": "2025-11-30",
+      "description": "testing",
+      "userId": "7e4d"
     }
   ]
 }

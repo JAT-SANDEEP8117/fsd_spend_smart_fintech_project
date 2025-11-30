@@ -8,8 +8,18 @@ export const TransactionContext = createContext();
 
 export const TransactionProvider = ({ children }) => {
   const [transactions, setTransactions] = useState([]);
+  
+  // Get user from localStorage
+  const getUser = () => {
+    try {
+      const savedUser = localStorage.getItem("user");
+      return savedUser ? JSON.parse(savedUser) : null;
+    } catch {
+      return null;
+    }
+  };
 
-  // 🔥 SORT: Latest FIRST (by date, then by id)
+  // SORT: Latest FIRST (by date, then by id)
   const sortByLatest = (data) => {
     return [...data].sort((a, b) => {
       const dateA = new Date(a.date);
@@ -24,11 +34,18 @@ export const TransactionProvider = ({ children }) => {
     });
   };
 
-  // 📌 Fetch all transactions from JSON server
+  // Fetch user-specific transactions from JSON server
   const fetchTransactions = async () => {
+    const user = getUser();
+    if (!user) {
+      setTransactions([]);
+      return;
+    }
+
     try {
-      const res = await api.get("/transactions");
-      setTransactions(sortByLatest(res.data));
+      // Fetch transactions filtered by userId
+      const res = await api.get(`/transactions?userId=${user.id}`);
+      setTransactions(sortByLatest(res.data || []));
     } catch (err) {
       console.error("Error fetching transactions:", err);
       toast.error("Failed to load transactions.");
@@ -37,12 +54,39 @@ export const TransactionProvider = ({ children }) => {
 
   useEffect(() => {
     fetchTransactions();
+    // Listen for storage changes (when user logs in/out in another tab)
+    const handleStorageChange = () => {
+      fetchTransactions();
+    };
+    window.addEventListener("storage", handleStorageChange);
+    // Listen for custom event when user changes in same tab
+    const handleUserChange = () => {
+      fetchTransactions();
+    };
+    window.addEventListener("userChanged", handleUserChange);
+    
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("userChanged", handleUserChange);
+    };
   }, []);
 
-  // ➕ ADD Transaction
+  // ADD Transaction
   const addTransaction = async (tx) => {
+    const user = getUser();
+    if (!user) {
+      toast.error("Please login to add transactions.");
+      return;
+    }
+
     try {
-      const res = await api.post("/transactions", tx);
+      // Add userId to transaction and post to transactions endpoint
+      const transactionWithUserId = {
+        ...tx,
+        userId: user.id,
+      };
+      
+      const res = await api.post("/transactions", transactionWithUserId);
 
       setTransactions((prev) => sortByLatest([...prev, res.data]));
       toast.success("Transaction added!");
@@ -52,9 +96,16 @@ export const TransactionProvider = ({ children }) => {
     }
   };
 
-  // 🗑 DELETE Transaction
+  // DELETE Transaction
   const deleteTransaction = async (id) => {
+    const user = getUser();
+    if (!user) {
+      toast.error("Please login to delete transactions.");
+      return;
+    }
+
     try {
+      // Delete transaction directly from transactions endpoint
       await api.delete(`/transactions/${id}`);
 
       setTransactions((prev) =>
@@ -67,10 +118,22 @@ export const TransactionProvider = ({ children }) => {
     }
   };
 
-  // ✏️ UPDATE Transaction
+  // UPDATE Transaction
   const updateTransaction = async (updatedTx) => {
+    const user = getUser();
+    if (!user) {
+      toast.error("Please login to update transactions.");
+      return;
+    }
+
     try {
-      const res = await api.put(`/transactions/${updatedTx.id}`, updatedTx);
+      // Ensure userId is included and update transaction directly
+      const transactionWithUserId = {
+        ...updatedTx,
+        userId: user.id,
+      };
+      
+      const res = await api.put(`/transactions/${updatedTx.id}`, transactionWithUserId);
 
       setTransactions((prev) =>
         sortByLatest(prev.map((t) => (t.id === updatedTx.id ? res.data : t)))
@@ -83,11 +146,23 @@ export const TransactionProvider = ({ children }) => {
     }
   };
 
-  // 🔄 RESET All Transactions
+  // RESET All Transactions
   const resetAllTransactions = async () => {
+    const user = getUser();
+    if (!user) {
+      toast.error("Please login to reset transactions.");
+      return;
+    }
+
     try {
-      // Delete all transactions one by one
-      const deletePromises = transactions.map((t) => api.delete(`/transactions/${t.id}`));
+      // Get all user's transactions and delete them
+      const res = await api.get(`/transactions?userId=${user.id}`);
+      const userTransactions = res.data || [];
+      
+      // Delete all transactions
+      const deletePromises = userTransactions.map((t) => 
+        api.delete(`/transactions/${t.id}`)
+      );
       await Promise.all(deletePromises);
       
       setTransactions([]);
@@ -106,6 +181,7 @@ export const TransactionProvider = ({ children }) => {
         deleteTransaction,
         updateTransaction,
         resetAllTransactions,
+        fetchTransactions,
       }}
     >
       {children}

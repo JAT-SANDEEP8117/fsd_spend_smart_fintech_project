@@ -104,11 +104,18 @@ const styles = StyleSheet.create({
 });
 
 // PDF Document Component
-const PDFDocument = ({ transactions, filterType, filterCategory, reportType, selectedMonth, totals }) => {
+const PDFDocument = ({ transactions, filterType, filterCategory, reportType, selectedMonth, totals, username }) => {
   const currentDate = new Date().toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
+  });
+  
+  const currentTime = new Date().toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true,
   });
 
   // Format month name for monthly reports
@@ -122,7 +129,10 @@ const PDFDocument = ({ transactions, filterType, filterCategory, reportType, sel
         {/* Header */}
         <View style={styles.header}>
           <Text style={styles.title}>Spend Smart - Transaction Report</Text>
-          <Text style={styles.subtitle}>Generated on {currentDate}</Text>
+          {username && (
+            <Text style={styles.subtitle}>User: {username}</Text>
+          )}
+          <Text style={styles.subtitle}>Generated on {currentDate} at {currentTime}</Text>
           {reportType === "monthly" && monthName && (
             <Text style={styles.subtitle}>Monthly Report: {monthName}</Text>
           )}
@@ -233,7 +243,7 @@ const PDFDocument = ({ transactions, filterType, filterCategory, reportType, sel
 
 // PDF Generator Class
 class PDFGenerator {
-  static async generatePDF({ transactions, filterType, filterCategory, reportType, selectedMonth, totals }) {
+  static async generatePDF({ transactions, filterType, filterCategory, reportType, selectedMonth, totals, username }) {
     try {
       const doc = (
         <PDFDocument
@@ -243,6 +253,7 @@ class PDFGenerator {
           reportType={reportType}
           selectedMonth={selectedMonth}
           totals={totals}
+          username={username}
         />
       );
 
