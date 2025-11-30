@@ -46,10 +46,10 @@ const AIInsights = () => {
     <div className="text-gray-900 dark:text-white animate-fadeIn min-h-[80vh]">
       {/* Header */}
       <div className="text-center mb-8">
-        <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-purple-500 to-blue-600 rounded-full mb-4 animate-float">
+        <div className="inline-flex items-center justify-center w-20 h-20 bg-linear-to-br from-purple-500 to-blue-600 rounded-full mb-4 animate-float">
           <FaBrain className="text-white text-4xl" />
         </div>
-        <h1 className="text-4xl font-bold mb-3 bg-gradient-to-r from-purple-600 to-blue-600 dark:from-purple-400 dark:to-blue-400 bg-clip-text text-transparent">
+        <h1 className="text-4xl font-bold mb-3 bg-linear-to-r from-purple-600 to-blue-600 dark:from-purple-400 dark:to-blue-400 bg-clip-text text-transparent">
           AI Insights
         </h1>
         <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
@@ -59,7 +59,7 @@ const AIInsights = () => {
 
       {/* Coming Soon Banner */}
       <div className="max-w-4xl mx-auto mb-8">
-        <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl p-6 text-white shadow-lg animate-pulse-slow">
+        <div className="bg-linear-to-r from-blue-500 to-purple-600 rounded-xl p-6 text-white shadow-lg animate-pulse-slow">
           <div className="flex items-center gap-4">
             <FaRobot className="text-4xl" />
             <div>

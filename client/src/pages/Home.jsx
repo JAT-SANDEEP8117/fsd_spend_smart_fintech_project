@@ -25,12 +25,12 @@ const Home = () => {
       <div className="mb-8">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
+            <h1 className="text-4xl font-bold mb-2 bg-linear-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
               Dashboard
             </h1>
             <p className="text-gray-600 dark:text-gray-400">Welcome back! Here's your financial overview</p>
           </div>
-          <div className="hidden md:flex items-center justify-center w-32 h-32 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 rounded-full">
+          <div className="hidden md:flex items-center justify-center w-32 h-32 bg-linear-to-br from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 rounded-full">
             <FaWallet className="text-6xl text-blue-600 dark:text-blue-400" />
           </div>
         </div>
@@ -38,7 +38,7 @@ const Home = () => {
 
       {/* Summary Cards with Icons */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
-        <div className="p-6 bg-gradient-to-br from-green-500 to-green-600 dark:from-green-600 dark:to-green-700 rounded-xl shadow-lg text-white hover:shadow-xl transition-all transform hover:scale-105">
+        <div className="p-6 bg-linear-to-br from-green-500 to-green-600 dark:from-green-600 dark:to-green-700 rounded-xl shadow-lg text-white hover:shadow-xl transition-all transform hover:scale-105">
           <div className="flex items-center justify-between mb-4">
             <div className="p-3 bg-white/20 rounded-lg">
               <FaArrowUp className="text-2xl" />
@@ -48,7 +48,7 @@ const Home = () => {
           <p className="text-3xl font-bold">₹{totalIncome.toLocaleString()}</p>
         </div>
 
-        <div className="p-6 bg-gradient-to-br from-red-500 to-red-600 dark:from-red-600 dark:to-red-700 rounded-xl shadow-lg text-white hover:shadow-xl transition-all transform hover:scale-105">
+        <div className="p-6 bg-linear-to-br from-red-500 to-red-600 dark:from-red-600 dark:to-red-700 rounded-xl shadow-lg text-white hover:shadow-xl transition-all transform hover:scale-105">
           <div className="flex items-center justify-between mb-4">
             <div className="p-3 bg-white/20 rounded-lg">
               <FaArrowDown className="text-2xl" />
@@ -58,7 +58,7 @@ const Home = () => {
           <p className="text-3xl font-bold">₹{totalExpense.toLocaleString()}</p>
         </div>
 
-        <div className="p-6 bg-gradient-to-br from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 rounded-xl shadow-lg text-white hover:shadow-xl transition-all transform hover:scale-105">
+        <div className="p-6 bg-linear-to-br from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 rounded-xl shadow-lg text-white hover:shadow-xl transition-all transform hover:scale-105">
           <div className="flex items-center justify-between mb-4">
             <div className="p-3 bg-white/20 rounded-lg">
               <FaPiggyBank className="text-2xl" />

@@ -93,7 +93,7 @@ const PDFExport = () => {
   return (
     <div className="text-gray-900 dark:text-white animate-fadeIn">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 bg-gradient-to-br from-red-500 to-red-600 rounded-xl shadow-lg">
+        <div className="p-3 bg-linear-to-br from-red-500 to-red-600 rounded-xl shadow-lg">
           <FaFilePdf className="text-white text-2xl" />
         </div>
         <div>
@@ -215,7 +215,7 @@ const PDFExport = () => {
         <button
           onClick={handleDownload}
           disabled={filteredTransactions.length === 0}
-          className="px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white rounded-xl shadow-lg font-semibold text-lg flex items-center gap-3 transition-all transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+          className="px-8 py-4 bg-linear-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white rounded-xl shadow-lg font-semibold text-lg flex items-center gap-3 transition-all transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
         >
           <FaDownload />
           Download PDF

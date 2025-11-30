@@ -43,7 +43,7 @@ const About = () => {
               <FaUser className="text-white text-6xl" />
             </div>
             <div className="text-center md:text-left">
-              <h2 className="text-3xl font-bold mb-2">JAT SANDEEP</h2>
+              <h2 className="text-3xl font-bold mb-2">GenX</h2>
               <p className="text-lg text-gray-600 dark:text-gray-400 mb-2">
                 B.Tech Computer Science & Engineering
               </p>

@@ -3,7 +3,7 @@
     {
       "id": "14d3",
       "type": "income",
-      "amount": 5656500000,
+      "amount": 550000,
       "category": "Business Income",
       "date": "2025-11-27",
       "description": "today"
@@ -11,7 +11,7 @@
     {
       "id": "49a3",
       "type": "income",
-      "amount": 122300,
+      "amount": 1223000,
       "category": "Interest Income",
       "date": "2025-11-27",
       "description": "vcbvbnnm"
@@ -19,7 +19,7 @@
     {
       "id": "d5e8",
       "type": "income",
-      "amount": 1510,
+      "amount": 15100,
       "category": "Business Income",
       "date": "2025-11-27",
       "description": ""
@@ -35,7 +35,7 @@
     {
       "id": "36a4",
       "type": "expense",
-      "amount": 100000,
+      "amount": 10000,
       "category": "Entertainment",
       "date": "2025-11-27",
       "description": ""
@@ -43,7 +43,7 @@
     {
       "id": "5fd2",
       "type": "expense",
-      "amount": 50,
+      "amount": 5000,
       "category": "Food",
       "date": "2025-11-27",
       "description": ""
@@ -51,9 +51,81 @@
     {
       "id": "b8eb",
       "type": "income",
-      "amount": 500,
-      "category": "Interest Income",
+      "amount": 5000,
+      "category": "Freelancing",
+      "date": "2025-12-03",
+      "description": ""
+    },
+    {
+      "id": "e20d",
+      "type": "expense",
+      "amount": 10000,
+      "category": "Food",
+      "date": "2025-11-29",
+      "description": ""
+    },
+    {
+      "id": "3aae",
+      "type": "expense",
+      "amount": 50000,
+      "category": "Shopping",
+      "date": "2025-11-29",
+      "description": ""
+    },
+    {
+      "id": "03dd",
+      "type": "expense",
+      "amount": 15500,
+      "category": "Transport",
       "date": "2025-11-28",
+      "description": ""
+    },
+    {
+      "id": "80fb",
+      "type": "expense",
+      "amount": 100008,
+      "category": "Bills",
+      "date": "2025-11-28",
+      "description": ""
+    },
+    {
+      "id": "4593",
+      "type": "expense",
+      "amount": 2000,
+      "category": "Others",
+      "date": "2025-12-01",
+      "description": ""
+    },
+    {
+      "id": "7a10",
+      "type": "expense",
+      "amount": 560500,
+      "category": "Groceries",
+      "date": "2025-12-03",
+      "description": "dec"
+    },
+    {
+      "id": "a357",
+      "type": "income",
+      "amount": 50000,
+      "category": "Interest Income",
+      "date": "2025-12-01",
+      "description": ""
+    },
+    {
+      "id": "20bd",
+      "type": "income",
+      "amount": 1800000,
+      "category": "Salary",
+      "date": "2025-10-28",
+      "description": ""
+    },
+    {
+      "id": "bf5c",
+      "type": "expense",
+      "amount": 30000,
+      "category": "Others",
+      "date": "2025-10-22",
       "description": ""
     }
   ]

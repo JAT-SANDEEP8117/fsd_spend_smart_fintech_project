@@ -22,7 +22,7 @@ const Sidebar = () => {
       <div className="p-4 h-full flex flex-col">
           {/* Header */}
           <div className="flex items-center gap-3 mb-6">
-            <div className="p-2 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg shadow-md">
+            <div className="p-2 bg-linear-to-br from-purple-500 to-pink-600 rounded-lg shadow-md">
               <FaBars className="text-white text-lg" />
             </div>
             <h2 className="text-lg font-bold text-gray-900 dark:text-white">Menu</h2>

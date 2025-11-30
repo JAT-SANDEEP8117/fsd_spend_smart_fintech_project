@@ -42,7 +42,7 @@ const Analytics = () => {
     <div className="text-gray-900 dark:text-white animate-fadeIn">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
+        <h1 className="text-4xl font-bold mb-2 bg-linear-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
           Analytics Dashboard
         </h1>
         <p className="text-gray-600 dark:text-gray-400">Comprehensive financial insights and visualizations</p>
@@ -50,28 +50,28 @@ const Analytics = () => {
 
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-        <div className="bg-gradient-to-br from-green-500 to-green-600 dark:from-green-600 dark:to-green-700 rounded-xl p-4 text-white shadow-lg">
+        <div className="bg-linear-to-br from-green-500 to-green-600 dark:from-green-600 dark:to-green-700 rounded-xl p-4 text-white shadow-lg">
           <div className="flex items-center justify-between mb-2">
             <FaDollarSign className="text-2xl" />
             <span className="text-sm opacity-90">Income</span>
           </div>
           <p className="text-2xl font-bold">₹{totalIncome.toLocaleString()}</p>
         </div>
-        <div className="bg-gradient-to-br from-red-500 to-red-600 dark:from-red-600 dark:to-red-700 rounded-xl p-4 text-white shadow-lg">
+        <div className="bg-linear-to-br from-red-500 to-red-600 dark:from-red-600 dark:to-red-700 rounded-xl p-4 text-white shadow-lg">
           <div className="flex items-center justify-between mb-2">
             <FaChartLine className="text-2xl" />
             <span className="text-sm opacity-90">Expense</span>
           </div>
           <p className="text-2xl font-bold">₹{totalExpense.toLocaleString()}</p>
         </div>
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 rounded-xl p-4 text-white shadow-lg">
+        <div className="bg-linear-to-br from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 rounded-xl p-4 text-white shadow-lg">
           <div className="flex items-center justify-between mb-2">
             <FaPiggyBank className="text-2xl" />
             <span className="text-sm opacity-90">Savings</span>
           </div>
           <p className="text-2xl font-bold">₹{balance.toLocaleString()}</p>
         </div>
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 dark:from-purple-600 dark:to-purple-700 rounded-xl p-4 text-white shadow-lg">
+        <div className="bg-linear-to-br from-purple-500 to-purple-600 dark:from-purple-600 dark:to-purple-700 rounded-xl p-4 text-white shadow-lg">
           <div className="flex items-center justify-between mb-2">
             <FaChartPie className="text-2xl" />
             <span className="text-sm opacity-90">Savings Rate</span>
