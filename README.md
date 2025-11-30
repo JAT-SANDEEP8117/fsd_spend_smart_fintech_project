@@ -1,91 +1,66 @@
-# Spend Smart Fintech Project
+# Spend Smart
 
-Spend Smart is a modern fintech web app that empowers users to manage their finances, track transactions, set budgets, and analyze spending habits. Built with a feature-rich frontend and a flexible mock API backend, it delivers a seamless experience focused on personal finance clarity.
+Spend Smart is a full stack personal finance management application that helps users track their income, expenses, and overall financial health. Built using React, JSON Server, and Tailwind CSS, it offers modern dashboards, analytics, PDF reports, and AI insights for better money management.
 
 ---
 
 ## Table of Contents
 
-- [Demo](#demo)
+- [Overview](#overview)
 - [Features](#features)
-- [Transactions Dashboard](#transactions-dashboard)
-- [Analytics & Visualization](#analytics--visualization)
-- [Reports & Export](#reports--export)
-- [Libraries & Tools Used](#libraries--tools-used)
+- [Tech Stack & Libraries](#tech-stack--libraries)
 - [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
+- [Quickstart Setup](#quickstart-setup)
+- [Test Credentials](#test-credentials)
+- [API Endpoints](#api-endpoints)
 - [Contributing](#contributing)
 - [License](#license)
 
 ---
 
-## Demo
+## Overview
 
-*(Add deployment link or screenshots if available)*
+**Spend Smart** allows you to:
+- Register and securely log in
+- Manage income and expenses by category
+- Analyze your transactions with charts and dashboards
+- Export custom PDF reports
+- Receive AI-driven savings insights
+- Enjoy a fast, responsive UI that works great on all devices
 
 ---
 
 ## Features
 
-- **Dashboard Overview:** View your balance, monthly cash flow, and summary insights at a glance.
-- **Transactions Dashboard:**
-  - See all transactions in a sortable table (by amount, type, date, etc.)
-  - Sort by high ↔ low, income/expense, and more.
-  - Full CRUD: add, edit, delete, and view transaction details.
-  - Instant notifications for actions using React Toastify.
-- **Analytics & Visualization:**
-  - **Monthly Line Chart:** See spending and income trends over time.
-  - **Three Pie Charts:** Visual breakdowns for category, income vs expense, or custom splits.
-- **PDF Reports:**
-  - Download sorted & filtered transaction reports (e.g., only income, only expenses, monthly) as PDF.
-- **Responsive & Modern UI:** Clean layout, works great on mobile and desktop.
-- **Mock Backend:** All CRUD, analytics, and dashboard data powered by a JSON Server mock API.
-- **Rich Icons:** All pages use crisp icons from FontAwesome (and others) powered by React Icons.
-- **Real-time User Feedback:** Web notifications for all important actions.
+- **User Authentication:** Login/register, session management & protected routing
+- **Transaction Management:** Add, edit, delete, sort, filter, and view personal transactions
+- **Analytics Dashboard:** Visualize income and expenses using line & pie charts
+- **PDF Export:** Generate and download filtered transaction reports with personalized layouts
+- **AI Insights:** Get intelligent recommendations and savings tips
+- **Responsive UI:** Mobile-friendly with light/dark themes
+- **Instant Notifications:** Powered by React Toastify
 
 ---
 
-## Transactions Dashboard
-
-A dedicated dashboard for:
-- Viewing all transactions
-- Sorting and filtering (amount, type, date, etc.)
-- Quick CRUD actions: add, edit, delete transactions
-- Live in-app notifications (via Toast)
-
----
-
-## Analytics & Visualization
-
-- **Monthly Line Chart:** Track monthly cash flow changes.
-- **Three Pie Charts:** Instantly understand your spending and income breakdowns.
-
----
-
-## Reports & Export
-
-- **PDF Export:** Download custom reports as PDFs; filter by date, type (income/expense), or month.
-- Powered by [`@react-pdf/renderer`](https://github.com/diegomura/react-pdf).
-
----
-
-## Libraries & Tools Used
+## Tech Stack & Libraries
 
 ### Frontend (`client/`)
-- **React:** UI library
-- **React Router DOM:** SPA navigation
-- **Axios:** For all HTTP/API requests
-- **React Icons:** Built-in icons (FontAwesome, Material, and more)
-- **React Toastify:** Toast notifications for feedback
-- **@react-pdf/renderer:** PDF generation for custom reports
-- **Recharts:** Beautiful charts for analytics
-- **Tailwind CSS** + **@tailwindcss/vite:** Utility-first CSS framework
-- **Vite:** Lightning-fast build tool
-- **ESLint:** Code style and quality checks
+- **React** 19.x
+- **React Router DOM** (routing)
+- **Axios** (HTTP/API requests)
+- **React Hook Form** (form validation)
+- **React Icons** (icons, FontAwesome + more)
+- **React Toastify** (toast notifications)
+- **Recharts** (charts and analytics)
+- **@react-pdf/renderer** (PDF generation)
+- **Tailwind CSS** (utility-first CSS)
+- **Vite** (build tool)
+- **ESLint** (linting/code quality)
 
 ### Backend (`server/`)
-- **JSON Server:** Fast and simple mock REST API for all data operations (CRUD)
-- **Node.js:** Backend runtime
+- **JSON Server** (mock REST API)
+- **json-server-auth** (authentication middleware, not used but installed)
+- **Node.js** runtime
 
 ---
 
@@ -93,47 +68,101 @@ A dedicated dashboard for:
 
 ```
 fsd_spend_smart_fintech_project/
-├── client/        # Front-end (React/Vite)
-│   ├── public/    # Static assets
-│   ├── src/       # Source code (components, hooks, etc.)
+├── client/          # React Frontend (components, context, pages, features)
+│   ├── src/
+│   │   ├── components/         # Reusable UI (charts, sidebar, navbar)
+│   │   ├── context/            # Auth, theme, transaction context
+│   │   ├── features/           # PDF & transactions modules
+│   │   ├── pages/              # Route pages (Login, Register, Home, etc.)
+│   │   └── utils/              # Utilities
 │   ├── package.json
-│   └── ...
-└── server/        # Mock backend (JSON Server)
-    ├── db.json    # Mock database
+│   └── vite.config.js
+└── server/          # Mock Backend (JSON Server)
+    ├── db.json      # Mock database
     └── package.json
 ```
 
 ---
 
-## Getting Started
+## Quickstart Setup
 
-**Prerequisites:** Node.js (v16+), npm or yarn
+**Prerequisites:** Node.js (v16+), npm
 
-1. **Clone the repo:**
-    ```bash
-    git clone https://github.com/JAT-SANDEEP8117/fsd_spend_smart_fintech_project.git
-    cd fsd_spend_smart_fintech_project
-    ```
-2. **Install dependencies:**
-    - Client: `cd client && npm install`
-    - Server: `cd ../server && npm install`
-3. **Run the project:**
-    - Start server: `npm start` (from server/)
-    - Start client: `npm run dev` (from client/)
+### 1. Install Dependencies
 
-Client default: `http://localhost:5173`  
-API default: `http://localhost:3000`
+**Frontend:**
+```bash
+cd client
+npm install
+```
+
+**Backend:**
+```bash
+cd server
+npm install
+```
+
+### 2. Run the Project
+
+**Start Backend (JSON Server):**
+```bash
+cd server
+npx json-server --watch db.json --port 5000
+```
+
+**Start Frontend (React App):**
+```bash
+cd client
+npm run dev
+```
+
+### 3. Access the App
+
+- Frontend: [http://localhost:5173](http://localhost:5173)
+- Backend API: [http://localhost:5000](http://localhost:5000)
+
+> **Note:** Both React and JSON Server must be running for the application to function.
+
+---
+
+## Test Credentials
+
+Use these to log in quickly during development/testing:
+
+- Email: `jatsandeep275@gmail.com` | Password: `JatS8117`
+- Email: `user2@example.com`       | Password: `Password123!`
+- Email: `user3@example.com`       | Password: `StrongPass!23`
+- Email: `dummy1@example.com`      | Password: `Dummy123!@#`
+
+---
+
+## API Endpoints
+
+### Users:
+- `GET /users` - Get all users
+- `POST /users` - Register new user
+- `GET /users/:id` - Get specific user
+
+### Transactions:
+- `GET /transactions?userId=:id` - Get user-specific transactions
+- `POST /transactions` - Add new transaction
+- `PUT /transactions/:id` - Update transaction
+- `DELETE /transactions/:id` - Remove transaction
 
 ---
 
 ## Contributing
 
-Contributions welcome!
-1. Fork, branch, and commit your changes.
-2. Create a pull request describing your changes.
+Contributions are welcome!  
+1. Fork the repo and create a new branch for your feature/bugfix.
+2. Make changes and test thoroughly.
+3. Open a pull request with a detailed description.
 
 ---
 
 ## License
+Soon
 
-(Add your license here)
+---
+
+**Developed by GenX - Full Stack Developers | 2025**
