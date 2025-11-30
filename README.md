@@ -129,7 +129,6 @@ npm run dev
 
 Use these to log in quickly during development/testing:
 
-- Email: `jatsandeep275@gmail.com` | Password: `JatS8117`
 - Email: `user2@example.com`       | Password: `Password123!`
 - Email: `user3@example.com`       | Password: `StrongPass!23`
 - Email: `dummy1@example.com`      | Password: `Dummy123!@#`
