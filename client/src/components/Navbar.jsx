@@ -17,7 +17,7 @@ const Navbar = () => {
         {/* <div className="p-2 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg shadow-md">
           <FaWallet className="text-white text-xl" />
         </div> */}
-        <h1 className="text-xl font-bold text-gray-900 dark:text-white bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-600 bg-clip-text text-transparent">
+        <h1 className="text-xl font-bold text-gray-900 dark:text-white bg-linear-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-600 bg-clip-text text-transparent">
           Spend Smart
         </h1>
       </div>
