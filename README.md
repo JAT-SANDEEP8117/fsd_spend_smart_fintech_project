@@ -160,7 +160,7 @@ Contributions are welcome!
 ---
 
 ## License
-Soon
+This project is open-source and licensed under the MIT License.
 
 ---
 
