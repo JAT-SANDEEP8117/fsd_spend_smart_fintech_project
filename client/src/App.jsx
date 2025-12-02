@@ -88,29 +88,29 @@ const App = () => {
             path="/*"
             element={
               <ProtectedRoute>
-                <div className="flex min-h-screen">
-                  {/* LEFT SIDEBAR - Fixed */}
-                  <Sidebar />
+        <div className="flex min-h-screen">
+          {/* LEFT SIDEBAR - Fixed */}
+          <Sidebar />
 
-                  {/* MAIN CONTENT */}
-                  <div className="flex-1 ml-60 min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col">
-                    <Navbar />
-                    
-                    <div className="flex-1 p-4 lg:p-6">
-                      <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/transactions" element={<Transactions />} />
-                        <Route path="/analytics" element={<Analytics />} />
-                        <Route path="/pdf" element={<PDFExport />} />
-                        <Route path="/insights" element={<AIInsights />} />
-                        <Route path="/about" element={<About />} />
+          {/* MAIN CONTENT */}
+          <div className="flex-1 ml-60 min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col">
+            <Navbar />
+            
+            <div className="flex-1 p-4 lg:p-6">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/transactions" element={<Transactions />} />
+                <Route path="/analytics" element={<Analytics />} />
+                <Route path="/pdf" element={<PDFExport />} />
+                <Route path="/insights" element={<AIInsights />} />
+                <Route path="/about" element={<About />} />
                         <Route path="/profile" element={<Profile />} />
-                      </Routes>
-                    </div>
+              </Routes>
+            </div>
 
-                    <Footer />
-                  </div>
-                </div>
+            <Footer />
+          </div>
+        </div>
               </ProtectedRoute>
             }
           />

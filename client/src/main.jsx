@@ -10,9 +10,9 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ThemeProvider>
       <AuthProvider>
-        <TransactionProvider>      
-          <App />
-        </TransactionProvider>
+      <TransactionProvider>      
+        <App />
+      </TransactionProvider>
       </AuthProvider>
     </ThemeProvider>
   </StrictMode>,
