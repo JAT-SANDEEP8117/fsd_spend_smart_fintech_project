@@ -19,7 +19,7 @@ const Profile = () => {
     <div className="text-gray-900 dark:text-white animate-fadeIn max-w-2xl mx-auto">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
+        <h1 className="text-4xl font-bold mb-2 bg-linear-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
           Profile
         </h1>
         <p className="text-gray-600 dark:text-gray-400">Your account information</p>
@@ -28,7 +28,7 @@ const Profile = () => {
       {/* Profile Card */}
       <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-8">
         <div className="flex items-center justify-center mb-6">
-          <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg">
+          <div className="w-24 h-24 bg-linear-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg">
             <FaUser className="text-white text-4xl" />
           </div>
         </div>
