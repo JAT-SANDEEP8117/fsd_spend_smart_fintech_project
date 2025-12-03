@@ -15,18 +15,19 @@ const applyThemeClass = (theme) => {
   }
 };
 
-// Get initial theme from localStorage
+// Get initial theme (system preference → fallback)
 const getInitialTheme = () => {
   try {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark" || savedTheme === "light") {
-      applyThemeClass(savedTheme);
-      return savedTheme;
-    }
-  } catch (e) {
-    console.error("Error reading theme from localStorage:", e);
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const systemTheme = prefersDark ? "dark" : "light";
+
+    applyThemeClass(systemTheme);
+    return systemTheme;
+  } catch (error) {
+    console.error("System theme detection failed:", error);
   }
-  // Default to dark
+
+  // fallback
   applyThemeClass("dark");
   return "dark";
 };
@@ -34,28 +35,13 @@ const getInitialTheme = () => {
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(getInitialTheme);
 
-  // Apply theme whenever it changes
   useEffect(() => {
     applyThemeClass(theme);
-    try {
-      localStorage.setItem("theme", theme);
-    } catch (e) {
-      console.error("Error saving theme to localStorage:", e);
-    }
   }, [theme]);
 
-  const toggleTheme = () => {
-    setTheme((prev) => {
-      const newTheme = prev === "dark" ? "light" : "dark";
-      console.log("Theme toggled from", prev, "to", newTheme);
-      return newTheme;
-    });
-  };
-
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme }}>
       {children}
     </ThemeContext.Provider>
   );
 };
-
